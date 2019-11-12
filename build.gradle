@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
+
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
@@ -15,7 +16,6 @@ apply plugin: 'maven'
 
 
 group = "com.stryphic" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "stryphiccore"
 archivesBaseName = "StryphicCore"
 
 ext.configFile = file "build.properties"
@@ -25,6 +25,7 @@ configFile.withReader {
     prop.load(it)
     project.ext.config = new ConfigSlurper().parse prop
 }
+
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -43,14 +44,15 @@ minecraft {
     mappings = "snapshot_20171003"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
+
 configurations {
     deployerJars
 }
 dependencies {
-
+    deployerJars "org.apache.maven.wagon:wagon-ftp:2.2"
 
 }
-def build_number = project.hasProperty("manualbuildnum") ? project.manualbuildnum : (Integer.parseInt(System.getenv("BUILD_NUMBER") ?: "1")).toString()
+def build_number = project.config.build_number
 version = "${project.config.mod_version}."+build_number
 
 processResources {
@@ -71,6 +73,8 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -78,7 +82,7 @@ uploadArchives {
             repository(url: "file://c/xampp/htdocs")
             pom {
                 groupId = project.group
-                version = "${config.mc_version}-${project.version}"
+                version = "${project.version}"
                 artifactId = project.archivesBaseName
                 project {
                     name project.archivesBaseName
