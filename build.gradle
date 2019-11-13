@@ -25,7 +25,20 @@ configFile.withReader {
     prop.load(it)
     project.ext.config = new ConfigSlurper().parse prop
 }
-
+repositories {
+    maven {
+        name = "CoFH Maven"
+        url = "http://maven.covers1624.net"
+    }
+    maven {
+        name = "ChickenBones Maven"
+        url = "http://chickenbones.net/maven/"
+    }
+    maven {
+        name = "JEI Maven"
+        url = "https://dvs1.progwml6.com/files/maven"
+    }
+}
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -50,6 +63,7 @@ configurations {
 }
 dependencies {
     deployerJars "org.apache.maven.wagon:wagon-ftp:2.2"
+    compile "cofh:CoFHCore:1.12.2-4.6.0.+:deobf"
 
 }
 def build_number = project.config.build_number
