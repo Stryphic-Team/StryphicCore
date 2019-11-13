@@ -1,12 +1,9 @@
 package com.stryphic.stryphiccore.blocks;
 
-import com.stryphic.stryphiccore.tile.TileDeviceBase;
+import com.stryphic.stryphiccore.tile.TileDeviceCore;
 import com.stryphic.stryphiccore.tile.utils.handlers.ModItemHandler;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
@@ -27,7 +24,7 @@ import java.util.Random;
 public abstract class BlockDeviceCore extends BlockCore implements ITileEntityProvider {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyBool ACTIVE = PropertyBool.create("active");
-    private TileDeviceBase tileDeviceBase;
+    private TileDeviceCore tileDeviceCore;
 
     public BlockDeviceCore(String name){
         super(name);
@@ -141,14 +138,14 @@ public abstract class BlockDeviceCore extends BlockCore implements ITileEntityPr
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
-        if(tileEntity instanceof TileDeviceBase){
-            this.tileDeviceBase = (TileDeviceBase)tileEntity;
+        if(tileEntity instanceof TileDeviceCore){
+            this.tileDeviceCore = (TileDeviceCore)tileEntity;
         }
         super.breakBlock(worldIn, pos, state);
     }
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        ModItemHandler itemStackHandler = tileDeviceBase.getItemStackHadler();
+        ModItemHandler itemStackHandler = tileDeviceCore.getItemStackHadler();
         if(itemStackHandler != null){
             int slotCount = itemStackHandler.getSlots();
             for(int i = 0;i<slotCount;i++){

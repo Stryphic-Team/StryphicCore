@@ -3,7 +3,7 @@ package com.stryphic.stryphiccore.gui;
 import com.stryphic.stryphiccore.gui.container.DeviceContainerBase;
 import com.stryphic.stryphiccore.gui.elements.ElementBase;
 import com.stryphic.stryphiccore.gui.elements.ElementButton;
-import com.stryphic.stryphiccore.tile.TileDeviceBase;
+import com.stryphic.stryphiccore.tile.TileDeviceCore;
 import com.stryphic.stryphiccore.util.Reference;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -25,11 +25,11 @@ public abstract class DeviceContainerGuiBase extends GuiContainer {
     private int mouseX;
     private int mouseY;
     private final InventoryPlayer player;
-    private final TileDeviceBase tileEntity;
+    private final TileDeviceCore tileEntity;
     protected static ResourceLocation background = new ResourceLocation(Reference.MODID,"textures/gui/elements/container_base.png");
     protected ArrayList<ElementBase> guiElements;
 
-    public DeviceContainerGuiBase(DeviceContainerBase deviceContainerBase, InventoryPlayer player, TileDeviceBase tileentity) {
+    public DeviceContainerGuiBase(DeviceContainerBase deviceContainerBase, InventoryPlayer player, TileDeviceCore tileentity) {
         super(deviceContainerBase);
         xSize = WIDTH;
         ySize = HEIGHT;
@@ -79,7 +79,7 @@ public abstract class DeviceContainerGuiBase extends GuiContainer {
         return player;
     }
 
-    public TileDeviceBase getTileEntity() {
+    public TileDeviceCore getTileEntity() {
         return tileEntity;
     }
     //credit to COFH Team

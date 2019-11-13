@@ -1,7 +1,7 @@
 package com.stryphic.stryphiccore.network.handlers;
 
 import com.stryphic.stryphiccore.network.messagestypes.MessageTileSync;
-import com.stryphic.stryphiccore.tile.TileDeviceBase;
+import com.stryphic.stryphiccore.tile.TileDeviceCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -21,13 +21,13 @@ public class MessageTileSyncHandler implements IMessageHandler<MessageTileSync, 
         BlockPos pos = message.getBlockPos();
         if(world != null) {
             TileEntity tileEntity = world.getTileEntity(pos);
-            if (tileEntity instanceof TileDeviceBase) {
-                TileDeviceBase tileDeviceBase = (TileDeviceBase) tileEntity;
-                if(tileDeviceBase.getEnergyHandler() != null) {
-                    tileDeviceBase.getEnergyHandler().setEnergyStorage(message.getEnergyStored());
+            if (tileEntity instanceof TileDeviceCore) {
+                TileDeviceCore tileDeviceCore = (TileDeviceCore) tileEntity;
+                if(tileDeviceCore.getEnergyHandler() != null) {
+                    tileDeviceCore.getEnergyHandler().setEnergyStorage(message.getEnergyStored());
                 }
 
-                tileDeviceBase.setProgress(message.getProgress());
+                tileDeviceCore.setProgress(message.getProgress());
 
             }
         }

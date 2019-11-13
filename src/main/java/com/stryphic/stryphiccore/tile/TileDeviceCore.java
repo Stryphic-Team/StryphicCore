@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 
-public abstract class TileDeviceBase extends TileEntity implements ITickable {
+public abstract class TileDeviceCore extends TileEntity implements ITickable {
     private String name;
     protected int progress = 0;
     protected int finishedProgress = 0;
@@ -51,7 +51,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
     protected String displayName = "NotSet";
 
 
-    public TileDeviceBase(String name){
+    public TileDeviceCore(String name){
         this.name = name;
         CoreTileEntities.TILE_ENTITIES.add(this);
         messageSyncMachineGui = new MessageSyncMachineGui("",0,0,0);
@@ -131,7 +131,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
                     break;
             }
         }
-//        updateTemperature();
+
         ArrayList<IBlockState> blockStates;
         if (tick % 4 == 2) {
             BlockPos firstPoint = pos.add(-1, -1, -1);
@@ -141,11 +141,11 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
             for (IBlockState blockState : blockStates) {
                 if (blockState == Blocks.WATER.getDefaultState()) {
                     thermalHandler.addTemperatureVector(-0.5f);
-                    //updateTemperature();
+
                 }
                 if (blockState == Blocks.LAVA.getDefaultState()) {
                     thermalHandler.addTemperatureVector(1.5f);
-                    //updateTemperature();
+
                 }
             }
         }
@@ -154,15 +154,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         updateTile();
 
     }
-    public void updateTemperature(){
-//        if(targetTemperature - temperature < 0) {
-//            temperature -= temperatureIncrement;
-//        }else{
-//            temperature += temperatureIncrement;
-//        }
 
-        //temperatureIncrement = (float)(Math.log(Math.abs((targetTemperature - temperature))+1d))/50;
-    }
 
     public void updateBlockState(){
         if(tick % 20 == 19 && world.isRemote) {
@@ -170,11 +162,11 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
             IBlockState defaultState = currentState.getBlock().getDefaultState();
 
             if (inProgress()) {
-                //world.setBlockState(pos, defaultState.withProperty(BlockDeviceBase.FACING, currentState.getValue(BlockDeviceBase.FACING)).withProperty(BlockDeviceBase.ACTIVE,true), 3);
+
                 BlockDeviceCore.setState(true,currentState,world,pos);
-                //PacketHandler.INSTANCE.sendToAll(new MessageTileSync(pos.getX(),pos.getY(),pos.getZ(),true));
+
             }else{
-                //world.setBlockState(pos, defaultState.withProperty(BlockDeviceBase.FACING, currentState.getValue(BlockDeviceBase.FACING)).withProperty(BlockDeviceBase.ACTIVE,false), 3);
+
                 BlockDeviceCore.setState(false,currentState,world,pos);
 
             }
@@ -239,7 +231,7 @@ public abstract class TileDeviceBase extends TileEntity implements ITickable {
         }
         return super.getCapability(capability, facing);
     }
-    //Gets the progress at which the machine is done
+
     public int getFinishedProgress(){
         return finishedProgress;
     }

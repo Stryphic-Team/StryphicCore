@@ -2,7 +2,7 @@ package com.stryphic.stryphiccore.gui.container;
 
 import cofh.core.util.helpers.InventoryHelper;
 import com.stryphic.stryphiccore.gui.GuiSync;
-import com.stryphic.stryphiccore.tile.TileDeviceBase;
+import com.stryphic.stryphiccore.tile.TileDeviceCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
@@ -18,13 +18,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 public abstract class DeviceContainerBase extends Container {
-    TileDeviceBase tileentity;
+    TileDeviceCore tileentity;
     IItemHandler itemHandler;
     int energy;
     int progress;
     int fluid_stored;
     int fluid_type;
-    public DeviceContainerBase(IInventory playerInventory,TileDeviceBase tileentity){
+    public DeviceContainerBase(IInventory playerInventory, TileDeviceCore tileentity){
         this.tileentity = tileentity;
         this.itemHandler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,null);
         addPlayerSlots(playerInventory);

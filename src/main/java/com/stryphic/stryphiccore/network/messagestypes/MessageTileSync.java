@@ -1,6 +1,6 @@
 package com.stryphic.stryphiccore.network.messagestypes;
 
-import com.stryphic.stryphiccore.tile.TileDeviceBase;
+import com.stryphic.stryphiccore.tile.TileDeviceCore;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -15,13 +15,13 @@ public class MessageTileSync implements IMessage {
     public MessageTileSync(){
 
     }
-    public MessageTileSync(TileDeviceBase tileDeviceBase){
-        this.x = tileDeviceBase.getPos().getX();
-        this.y = tileDeviceBase.getPos().getY();
-        this.z = tileDeviceBase.getPos().getZ();
-        this.progress = tileDeviceBase.getProgress();
-        this.fluidStored = tileDeviceBase.getFluidHandler() == null ? 0 : tileDeviceBase.getFluidHandler().getFluidTank().getFluidAmount();
-        this.energyStored = tileDeviceBase.getEnergyHandler() == null ? 0 : tileDeviceBase.getEnergyHandler().getEnergyStored();
+    public MessageTileSync(TileDeviceCore tileDeviceCore){
+        this.x = tileDeviceCore.getPos().getX();
+        this.y = tileDeviceCore.getPos().getY();
+        this.z = tileDeviceCore.getPos().getZ();
+        this.progress = tileDeviceCore.getProgress();
+        this.fluidStored = tileDeviceCore.getFluidHandler() == null ? 0 : tileDeviceCore.getFluidHandler().getFluidTank().getFluidAmount();
+        this.energyStored = tileDeviceCore.getEnergyHandler() == null ? 0 : tileDeviceCore.getEnergyHandler().getEnergyStored();
     }
     @Override
     public void fromBytes(ByteBuf buf) {
