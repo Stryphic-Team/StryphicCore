@@ -1,18 +1,31 @@
 package com.stryphic.stryphiccore.blocks;
 
+import cofh.core.gui.CreativeTabCore;
 import com.stryphic.stryphiccore.StryphicCore;
 import com.stryphic.stryphiccore.init.CoreBlocks;
 import com.stryphic.stryphiccore.init.CoreItems;
+import com.stryphic.stryphiccore.items.ItemCore;
+import com.stryphic.stryphiccore.proxy.IProxy;
 import com.stryphic.stryphiccore.util.CommonUtils;
 import com.stryphic.stryphiccore.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 
+import java.util.ArrayList;
 
-public abstract class BlockCore extends Block implements IModBlockBase {
+
+public abstract class BlockCore extends Block implements ICoreBlock {
     protected String name;
+    public static CreativeTabs creativeTab;
+    public static String nameSpace;
+    public static ArrayList<Block> blockArray;
+    public static ArrayList<Item> itemArray;
+    public static IProxy proxy;
+
+
 
     /**
      * Should be the default super constructor for most blocks
@@ -31,28 +44,26 @@ public abstract class BlockCore extends Block implements IModBlockBase {
         super(material);
         this.name = name;
         setRegistryName(name);
-        setUnlocalizedName(CommonUtils.createUnlocalizedName(name));
-        setCreativeTab(Reference.STRYPHIC_CORE_TAB);
+        setUnlocalizedName(nameSpace + ":" + name);
+        setCreativeTab(creativeTab);
         addBlockToRegistry();
         addItemToRegistry();
-
-
-
     }
+
 
     @Override
     public void addItemToRegistry() {
-        CoreItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.name));
+        itemArray.add(new ItemBlock(this).setRegistryName(this.name));
     }
 
     @Override
     public void addBlockToRegistry() {
-        CoreBlocks.BLOCKS.add(this);
+        blockArray.add(this);
     }
 
     @Override
     public void registerModels() {
-        StryphicCore.proxy.registerModel(Item.getItemFromBlock(this),0);
+        proxy.registerModel(Item.getItemFromBlock(this),0);
     }
 
 }

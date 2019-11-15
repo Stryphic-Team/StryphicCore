@@ -24,8 +24,6 @@ public class Reference {
             return itemStack;
 
         }
-
-
     };
 
 }

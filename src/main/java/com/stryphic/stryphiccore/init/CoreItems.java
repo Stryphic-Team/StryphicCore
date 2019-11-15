@@ -1,6 +1,10 @@
 package com.stryphic.stryphiccore.init;
 
+import com.stryphic.stryphiccore.StryphicCore;
+import com.stryphic.stryphiccore.blocks.BlockCore;
 import com.stryphic.stryphiccore.items.IOreDictItem;
+import com.stryphic.stryphiccore.items.ItemCore;
+import com.stryphic.stryphiccore.util.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -12,7 +16,12 @@ import java.util.ArrayList;
 
 public class CoreItems {
     public static ArrayList<Item> ITEMS = new ArrayList<Item>();
-
+    static{
+        ItemCore.itemArray = ITEMS;
+        ItemCore.proxy = StryphicCore.proxy;
+        ItemCore.nameSpace = Reference.MODID;
+        ItemCore.creativeTab = Reference.STRYPHIC_CORE_TAB;
+    }
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
         for (Item item: ITEMS) {
@@ -20,6 +29,7 @@ public class CoreItems {
         }
     }
     public static void init(){
+
         for(Item item:ITEMS){
             ForgeRegistries.ITEMS.register(item);
         }

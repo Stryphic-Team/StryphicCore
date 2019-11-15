@@ -1,6 +1,6 @@
 package com.stryphic.stryphiccore.blocks;
 
-public interface IModBlockBase {
+public interface ICoreBlock {
 
     void addItemToRegistry();
 

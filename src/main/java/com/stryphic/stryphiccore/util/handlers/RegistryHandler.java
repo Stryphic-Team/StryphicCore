@@ -1,6 +1,6 @@
 package com.stryphic.stryphiccore.util.handlers;
 
-import com.stryphic.stryphiccore.blocks.IModBlockBase;
+import com.stryphic.stryphiccore.blocks.ICoreBlock;
 import com.stryphic.stryphiccore.entityproperties.CapabilityProvider;
 import com.stryphic.stryphiccore.entityproperties.CorePlayerCapability;
 import com.stryphic.stryphiccore.init.CoreBlocks;
@@ -47,9 +47,9 @@ public class RegistryHandler {
 
         for(Block block : CoreBlocks.BLOCKS)
         {
-            if(block instanceof IModBlockBase)
+            if(block instanceof ICoreBlock)
             {
-                ((IModBlockBase)block).registerModels();
+                ((ICoreBlock)block).registerModels();
             }
         }
     }

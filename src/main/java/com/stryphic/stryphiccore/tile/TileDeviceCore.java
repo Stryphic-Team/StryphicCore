@@ -161,7 +161,7 @@ public abstract class TileDeviceCore extends TileEntity implements ITickable {
             IBlockState currentState = world.getBlockState(pos);
             IBlockState defaultState = currentState.getBlock().getDefaultState();
 
-            if (inProgress()) {
+            if (progress > 0) {
 
                 BlockDeviceCore.setState(true,currentState,world,pos);
 
