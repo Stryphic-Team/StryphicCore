@@ -16,12 +16,6 @@ import java.util.ArrayList;
 
 public class CoreItems {
     public static ArrayList<Item> ITEMS = new ArrayList<Item>();
-    static{
-        ItemCore.itemArray = ITEMS;
-        ItemCore.proxy = StryphicCore.proxy;
-        ItemCore.nameSpace = Reference.MODID;
-        ItemCore.creativeTab = Reference.STRYPHIC_CORE_TAB;
-    }
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
         for (Item item: ITEMS) {

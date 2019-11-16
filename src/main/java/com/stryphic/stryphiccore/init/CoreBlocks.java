@@ -12,13 +12,7 @@ import java.util.ArrayList;
 
 public class CoreBlocks {
     public static ArrayList<Block> BLOCKS = new ArrayList<Block>();
-    static{
-        BlockCore.blockArray = BLOCKS;
-        BlockCore.itemArray = CoreItems.ITEMS;
-        BlockCore.proxy = StryphicCore.proxy;
-        BlockCore.nameSpace = Reference.MODID;
-        BlockCore.creativeTab = Reference.STRYPHIC_CORE_TAB;
-    }
+
     public static BlockCore BLOCK_GREEN = new BlockGreen("green_block");
 
     public static void init(){

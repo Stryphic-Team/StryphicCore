@@ -13,26 +13,17 @@ import net.minecraft.item.Item;
 import java.util.ArrayList;
 
 public abstract class ItemCore extends Item implements IHasModel {
-    public static CreativeTabs creativeTab;
-    public static String nameSpace;
-    public static ArrayList<Item> itemArray;
-    public static IProxy proxy;
+
 
     public ItemCore(String name){
-        this(name,true);
+        this(name,Reference.MODID,Reference.STRYPHIC_CORE_TAB);
     }
-    public ItemCore(String name, boolean addToCreativeTab){
+    public ItemCore(String name, String modid,CreativeTabs creativeTab){
         setRegistryName(name);
-        setUnlocalizedName(nameSpace + ":" + name);
-        if(addToCreativeTab) {
-            this.setCreativeTab(creativeTab);
-        }
-        itemArray.add(this);
+        setUnlocalizedName(modid + ":" + name);
+        this.setCreativeTab(creativeTab);
+        CoreItems.ITEMS.add(this);
     }
     @Override
-    public void registerModels()
-    {
-        proxy.registerModel(this,0);
-
-    }
+    public abstract void registerModels();
 }

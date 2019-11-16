@@ -19,11 +19,8 @@ import java.util.ArrayList;
 
 public abstract class BlockCore extends Block implements ICoreBlock {
     protected String name;
-    public static CreativeTabs creativeTab;
-    public static String nameSpace;
-    public static ArrayList<Block> blockArray;
-    public static ArrayList<Item> itemArray;
-    public static IProxy proxy;
+
+
 
 
 
@@ -36,34 +33,36 @@ public abstract class BlockCore extends Block implements ICoreBlock {
     }
 
     /**
-     * Can be used in the case that you would like to base a material through
+     *
      * @param name
      * @param material
      */
     public BlockCore(String name, Material material){
+        this(name,Reference.MODID,material,Reference.STRYPHIC_CORE_TAB);
+    }
+
+    /**
+     *
+     * @param name
+     * @param modid
+     * @param material
+     * @param creativeTab
+     */
+    public BlockCore(String name, String modid,Material material,CreativeTabs creativeTab){
         super(material);
         this.name = name;
         setRegistryName(name);
-        setUnlocalizedName(nameSpace + ":" + name);
+        setUnlocalizedName(modid + ":" + name);
         setCreativeTab(creativeTab);
-        addBlockToRegistry();
         addItemToRegistry();
+        addBlockToRegistry();
+
     }
 
 
-    @Override
-    public void addItemToRegistry() {
-        itemArray.add(new ItemBlock(this).setRegistryName(this.name));
-    }
 
-    @Override
-    public void addBlockToRegistry() {
-        blockArray.add(this);
-    }
-
-    @Override
-    public void registerModels() {
-        proxy.registerModel(Item.getItemFromBlock(this),0);
-    }
+    public abstract void addItemToRegistry();
+    public abstract void addBlockToRegistry();
+    public abstract void registerModels();
 
 }
