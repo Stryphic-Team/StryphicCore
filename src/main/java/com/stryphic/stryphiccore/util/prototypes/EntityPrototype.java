@@ -45,13 +45,13 @@ public class EntityPrototype {
     /**
      * Registers a new entity with a texture applied
      */
-    public void register(){
+    public void register(Object mod){
         EntityRegistry.registerModEntity(
                 new ResourceLocation(this.modid,name),
                 entityClass,
                 name,
                 id,
-                StryphicCore.instance,
+                mod,
                 64,
                 3,
                 true

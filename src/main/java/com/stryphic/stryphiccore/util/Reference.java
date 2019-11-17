@@ -11,8 +11,8 @@ public class Reference {
     public static final String VERSION = "0.0.1";
 
     public static final String CLIENT_PROXY_CLASS = "com.stryphic.stryphiccore.proxy.ClientProxy";
-    public static final String COMMON_PROXY_CLASS = "com.stryphic.stryphiccore.CommonProxy";
-    public static final String SERVER_PROXY_CLASS = "com.stryphic.stryphiccore.ServerProxy";
+    public static final String COMMON_PROXY_CLASS = "com.stryphic.stryphiccore.proxy.CommonProxy";
+    public static final String SERVER_PROXY_CLASS = "com.stryphic.stryphiccore.proxy.ServerProxy";
 
     public static final String PREFIX = MODID + ".";
     public static final String RESOURCE_PREFIX = MODID + ":";

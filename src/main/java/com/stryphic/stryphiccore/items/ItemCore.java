@@ -22,8 +22,9 @@ public abstract class ItemCore extends Item implements IHasModel {
         setRegistryName(name);
         setUnlocalizedName(modid + ":" + name);
         this.setCreativeTab(creativeTab);
-        CoreItems.ITEMS.add(this);
+        addToRegistry();
     }
     @Override
     public abstract void registerModels();
+    public abstract void addToRegistry();
 }

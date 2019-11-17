@@ -20,7 +20,7 @@ public class StryphicCore
     public static StryphicCore instance;
 
     public static Logger logger;
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
     public static IProxy proxy;
     static {
         FluidRegistry.enableUniversalBucket();
